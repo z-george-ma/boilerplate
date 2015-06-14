@@ -68,7 +68,7 @@ cat <<EOF > package.json
   },
   "dependencies": {
   },
-  "private": "true"
+  "private": true
 }
 EOF
 

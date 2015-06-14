@@ -42,7 +42,7 @@ fi
 
 mkdir -p $output_directory
 git init $output_directory
-tar zxf node-api.tar.gz -C $output_directory
+tar zxf $(dirname $0)/node-api.tar.gz -C $output_directory
 pushd $output_directory > /dev/null
 
 cat <<EOF > package.json
@@ -65,7 +65,7 @@ cat <<EOF > package.json
     "config-node": "^1.2.2",
     "express": "^4.12.4"
   },
-  "private": "true"
+  "private": true
 }
 EOF
 
