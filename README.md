@@ -1,14 +1,26 @@
-# stencils
+# Boilerplates
 Shell scripts to quickly intialize new projects
 
-#### NodeJS barebone project with Mocha tests
+#### NodeJS boilerplate project with Mocha tests
 ```
 ./node.sh -p test-project -o ~/test
 ```
 A new project will be created at ~/test.
 
-#### NodeJS express API project
+#### NodeJS express API boilerplate project
 ```
 ./node-api.sh -p test-project -o ~/test
+```
+A new project will be created at ~/test
+
+#### NodeJS Express/HTML5 boilerplate project
+```
+./node-web.sh -p test-project -o ~/test
+```
+A new project will be created at ~/test
+
+#### NodeJS Express/HTML5/Socket.IO boilerplate project
+```
+./node-socket.io.sh -p test-project -o ~/test
 ```
 A new project will be created at ~/test

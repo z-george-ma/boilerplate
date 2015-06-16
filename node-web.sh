@@ -40,7 +40,7 @@ if [ -d $output_directory ]; then
   exit -1
 fi
 
-cp -a $(dirname $0)/node $output_directory
+cp -a $(dirname $0)/node-web $output_directory
 git init $output_directory
 pushd $output_directory > /dev/null
 
@@ -51,7 +51,7 @@ cat <<EOF > package.json
   "description": "",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha -R spec",
-    "start": "node ./app.js"
+    "start": "node ./server.js"
   },
   "author": "",
   "license": "ISC",
@@ -60,6 +60,7 @@ cat <<EOF > package.json
     "should": "^6.0.3"
   },
   "dependencies": {
+    "express": "^4.12.4"
   },
   "private": true
 }

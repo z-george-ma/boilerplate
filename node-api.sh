@@ -16,7 +16,7 @@ EOF
 
 # Initialize our own variables:
 project_name=""
-output_directory="node-api"
+output_directory="output"
 
 while getopts "h?p:o:" opt; do
     case "$opt" in
@@ -40,9 +40,8 @@ if [ -d $output_directory ]; then
   exit -1
 fi
 
-mkdir -p $output_directory
+cp -a $(dirname $0)/node-api $output_directory
 git init $output_directory
-tar zxf $(dirname $0)/node-api.tar.gz -C $output_directory
 pushd $output_directory > /dev/null
 
 cat <<EOF > package.json
@@ -50,10 +49,9 @@ cat <<EOF > package.json
   "name": "$project_name",
   "version": "0.0.0",
   "description": "",
-  "main": "app.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha -R spec",
-    "start": "node ./app.js"
+    "start": "node ./server.js"
   },
   "author": "",
   "license": "ISC",
@@ -62,7 +60,6 @@ cat <<EOF > package.json
     "should": "^6.0.3"
   },
   "dependencies": {
-    "config-node": "^1.2.2",
     "express": "^4.12.4"
   },
   "private": true
