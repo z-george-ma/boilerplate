@@ -47,7 +47,7 @@ pushd $output_directory > /dev/null
 cat <<EOF > package.json
 {
   "name": "$project_name",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha -R spec",
@@ -56,8 +56,8 @@ cat <<EOF > package.json
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^2.2.5",
-    "should": "^6.0.3"
+    "mocha": "*",
+    "should": "*"
   },
   "dependencies": {
   },
