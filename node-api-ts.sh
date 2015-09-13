@@ -5,20 +5,20 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 
 function show_help() {
   cat <<EOF
-Usage: $(basename $0) [options] [ -p project_name ] [ -o output_directory ]
+Usage: $(basename $0) [options] [ -p project_name ] [ -d docker_image_name ] output_directory
 
 Options:
   -h        show this help
   -p        set project name
-  -o        output directory
+  -d        set docker image name
 EOF
 }
 
 # Initialize our own variables:
 project_name=""
-output_directory="output"
+docker_image_name=""
 
-while getopts "h?p:o:" opt; do
+while getopts "h?p:d:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -26,7 +26,7 @@ while getopts "h?p:o:" opt; do
         ;;
     p)  project_name=$OPTARG
         ;;
-    o)  output_directory=$OPTARG
+    d)  docker_image_name=$OPTARG
         ;;
     esac
 done
@@ -34,6 +34,8 @@ done
 shift $((OPTIND-1))
 
 [ "$1" = "--" ] && shift
+
+output_directory=$1
 
 if [ -d $output_directory ]; then
   echo "Output directory already exists!" 1>&2
@@ -54,6 +56,10 @@ cat <<EOF > package.json
     "build-test": "rm -rf build-test && tsc --removeComments --module commonjs --outDir build-test src/test/*",
     "pretest": "npm run build-test",
     "test": "./node_modules/jasmine-node/bin/jasmine-node --verbose build-test/",
+    "predocker-build": "npm run build",
+    "docker-build": "cp Dockerfile package.json build/ && sh docker-build.sh -d build $docker_image_name",
+    "docker-push": "docker push $docker_image_name:latest",
+    "docker-run": "docker run $docker_image_name",
     "prestart": "npm run build",
     "start": "NODE_ENV=production node build/app"
   },
@@ -70,4 +76,3 @@ cat <<EOF > package.json
 EOF
 
 popd > /dev/null
-
