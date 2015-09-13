@@ -1,4 +1,3 @@
-/// <reference path="jasmine/jasmine.d.ts" />
 /// <reference path="node/node.d.ts" />
 /// <reference path="express/express.d.ts" />
 /// <reference path="mime/mime.d.ts" />
