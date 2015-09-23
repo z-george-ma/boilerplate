@@ -42,7 +42,7 @@ if [ -d $output_directory ]; then
   exit -1
 fi
 
-cp -a $(dirname $0)/node-api-ts $output_directory
+cp -a $(dirname $0)/node-ts $output_directory
 git init $output_directory
 pushd $output_directory > /dev/null
 
@@ -69,7 +69,6 @@ cat <<EOF > package.json
     "jasmine-node": "*"
   },
   "dependencies": {
-    "express": "*"
   },
   "private": true
 }
