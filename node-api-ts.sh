@@ -52,7 +52,7 @@ cat <<EOF > package.json
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "rm -rf dist && tsc && babel es6 --out-dir dist && rm -rf es6",
+    "build": "gulp compile",
     "pretest": "npm run build",
     "test": "./node_modules/jasmine-node/bin/jasmine-node --verbose dist/test/",
     "prestart": "npm run build",
@@ -61,7 +61,10 @@ cat <<EOF > package.json
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jasmine-node": "*"
+    "del": ">=2.0.2",
+    "gulp": ">=3.9.0",
+    "gulp-babel": ">=5.2.1",
+    "gulp-tsc": ">=1.1.1"
   },
   "dependencies": {
     "restify": ">=4.0.3"

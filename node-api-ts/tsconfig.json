@@ -3,6 +3,8 @@
     "target": "ES6",
     "experimentalAsyncFunctions": true,
     "removeComments": true,
+    "rootDir": "src",
+    "noLib": true,
     "outDir": "es6"
   }
 }
