@@ -1,12 +1,14 @@
-/// <reference path="../typings/express/express.d.ts"/>
-import express = require("express")
+/// <reference path="../typings/tsd"/>
+import * as restify from "restify"
 
 export let healthcheck =
-  (req: express.Request, res: express.Response) => {
-    res.status(200).end("Server OK!")
+  (req: restify.Request, res: restify.Response) => {
+    res.status(200)
+    res.end("Server OK!")
   }
 
 export let index =
-  (req: express.Request, res: express.Response) => {
-	  res.status(200).end()
+  (req: restify.Request, res: restify.Response) => {
+	  res.status(200)
+    res.end()
   }

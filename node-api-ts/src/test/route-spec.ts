@@ -1,6 +1,6 @@
-///<reference path='../typings/jasmine/legacy/jasmine-1.3.d.ts'/>
+///<reference path='../typings/tsd'/>
 
-import routes = require("../lib/route")
+import * as routes from "../lib/route"
 
 describe("Route", () => {
   let res

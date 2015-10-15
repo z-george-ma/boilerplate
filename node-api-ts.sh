@@ -52,16 +52,11 @@ cat <<EOF > package.json
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "rm -rf build && tsc --removeComments --module commonjs --outDir build src/app.ts",
-    "build-test": "rm -rf build-test && tsc --removeComments --module commonjs --outDir build-test src/test/*",
-    "pretest": "npm run build-test",
-    "test": "./node_modules/jasmine-node/bin/jasmine-node --verbose build-test/",
-    "predocker-build": "npm run build",
-    "docker-build": "cp Dockerfile package.json build/ && sh docker-build.sh -d build $docker_image_name",
-    "docker-push": "docker push $docker_image_name:latest",
-    "docker-run": "docker run $docker_image_name",
+    "build": "rm -rf dist && tsc && babel es6 --out-dir dist && rm -rf es6",
+    "pretest": "npm run build",
+    "test": "./node_modules/jasmine-node/bin/jasmine-node --verbose dist/test/",
     "prestart": "npm run build",
-    "start": "NODE_ENV=production node build/app"
+    "start": "NODE_ENV=production node dist/app"
   },
   "author": "",
   "license": "ISC",
@@ -69,7 +64,7 @@ cat <<EOF > package.json
     "jasmine-node": "*"
   },
   "dependencies": {
-    "express": "*"
+    "restify": ">=4.0.3"
   },
   "private": true
 }

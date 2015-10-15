@@ -1,13 +1,13 @@
-/// <reference path="../typings/express/express.d.ts"/>
+/// <reference path="../typings/tsd"/>
 
-import express = require("express")
-import routes = require("./route")
-export let app = express()
+import * as restify from "restify"
+import * as routes from "./route"
+export let app = restify.createServer()
 
 // Server setup
 app.use((req, res, next) => {
-  console.info(`${req.method} ${req.path}`)
-  res.contentType('application/json')
+  console.info(`${req.method} ${req.path()}`)
+  res.contentType = 'application/json'
   next()
 })
 

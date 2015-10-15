@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "experimentalAsyncFunctions": true,
+    "removeComments": true,
+    "outDir": "es6"
+  }
+}
