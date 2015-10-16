@@ -6,12 +6,14 @@ var gulp  = require('gulp'),
     node;
 
 /* clean */
-gulp.task('clean:es6', function () {
-  del('es6/**/*')
+gulp.task('clean:es6', function (cb) {
+  del.sync('es6/**/*', { force: true })
+  cb()
 })
 
-gulp.task('clean:dist', function () {
-  del('dist/**/*')
+gulp.task('clean:dist', function (cb) {
+  del.sync('dist/**/*', { force: true })
+  cb()
 })
 
 gulp.task('clean', ['clean:es6', 'clean:dist'])
@@ -29,6 +31,7 @@ gulp.task('compile:babel', ['compile:typescript'], function() {
   gulp.src(['es6/**/*.js'])
       .pipe(babel())
       .pipe(gulp.dest('dist/'))
+      .on('end', function() { cb() })
 })
 
 gulp.task('compile', ['compile:typescript', 'compile:babel'])
