@@ -11,7 +11,7 @@ describe("Route", () => {
       end:    (x) => {}
     }
     
-    spyOn(res, 'status').andCallThrough()
+    spyOn(res, 'status').and.callThrough()
     spyOn(res, 'end')
   });
 

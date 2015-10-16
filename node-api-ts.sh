@@ -10,23 +10,19 @@ Usage: $(basename $0) [options] [ -p project_name ] [ -d docker_image_name ] out
 Options:
   -h        show this help
   -p        set project name
-  -d        set docker image name
 EOF
 }
 
 # Initialize our own variables:
 project_name=""
-docker_image_name=""
 
-while getopts "h?p:d:" opt; do
+while getopts "h?p:" opt; do
     case "$opt" in
     h|\?)
         show_help
         exit 0
         ;;
     p)  project_name=$OPTARG
-        ;;
-    d)  docker_image_name=$OPTARG
         ;;
     esac
 done
@@ -52,9 +48,8 @@ cat <<EOF > package.json
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "gulp compile",
-    "pretest": "npm run build",
-    "test": "./node_modules/jasmine-node/bin/jasmine-node --verbose dist/test/",
+    "build": "gulp build",
+    "test": "gulp test",
     "prestart": "npm run build",
     "start": "NODE_ENV=production node dist/app"
   },
@@ -64,7 +59,9 @@ cat <<EOF > package.json
     "del": ">=2.0.2",
     "gulp": ">=3.9.0",
     "gulp-babel": ">=5.2.1",
+    "gulp-jasmine": "^2.1.0",
     "gulp-tsc": ">=1.1.1",
+    "jasmine-spec-reporter": ">=2.4.0",
     "yargs": ">=3.27.0"
   },
   "dependencies": {

@@ -1,10 +1,16 @@
-var gulp  = require('gulp'),
-    del   = require('del'),
-    tsc   = require('gulp-tsc'),
-    babel = require('gulp-babel'),
-    spawn = require('child_process').spawn,
-    argv = require('yargs').argv,
+var gulp    = require('gulp'),
+    del     = require('del'),
+    jasmine = require('gulp-jasmine'),
+    report  = require('jasmine-spec-reporter'),
+    tsc     = require('gulp-tsc'),
+    babel   = require('gulp-babel'),
+    spawn   = require('child_process').spawn,
+    argv    = require('yargs').argv,
     node;
+
+var options = {
+  dockerTag: argv.tag || 'api'
+}
 
 /* clean */
 gulp.task('clean:es6', function (cb) {
@@ -19,7 +25,7 @@ gulp.task('clean:dist', function (cb) {
 
 gulp.task('clean', ['clean:es6', 'clean:dist'])
 
-gulp.task('compile:typescript', ['clean'], function(cb) {
+gulp.task('build:typescript', ['clean'], function(cb) {
   gulp.src(['src/**/*.ts'])
       .pipe(tsc({
         emitError: false
@@ -28,25 +34,30 @@ gulp.task('compile:typescript', ['clean'], function(cb) {
       .on('end', function() { cb() })
 })
 
-gulp.task('compile:babel', ['compile:typescript'], function(cb) {
+gulp.task('build:babel', ['build:typescript'], function(cb) {
   gulp.src(['es6/**/*.js'])
       .pipe(babel())
       .pipe(gulp.dest('dist/'))
       .on('end', function() { cb() })
 })
 
-gulp.task('compile', ['compile:typescript', 'compile:babel'])
+gulp.task('build', ['build:typescript', 'build:babel'])
 
-gulp.task('docker:build', ['compile'], function(cb) {
+gulp.task('test', ['build'], function() {
+  gulp.src('dist/test/**/*.js')
+      .pipe(jasmine({ reporter: new report() }))
+})
+
+gulp.task('build:docker', ['build'], function(cb) {
   gulp.src(['Dockerfile', 'package.json'])
       .pipe(gulp.dest('dist/'))
       .on('end', function() {
-        spawn('docker', ['build', '-t', argv.tag, 'dist'], {stdio: 'inherit'})
+        spawn('docker', ['build', '-t', options.dockerTag, 'dist'], {stdio: 'inherit'})
           .on('close', function () { cb() })
       })
 })
 
-gulp.task('serve', ['compile'], function() {
+gulp.task('serve', ['build'], function() {
   if (node) node.kill()
   node = spawn('node', ['dist/app.js'], {stdio: 'inherit'})
   node.on('close', function (code) {
@@ -57,7 +68,7 @@ gulp.task('serve', ['compile'], function() {
 })
 
 gulp.task('watch', function() {
-  gulp.watch('src/**/*.ts', ['compile'])
+  gulp.watch('src/**/*.ts', ['build'])
 })
 
 gulp.task('default', ['serve'], function() {
