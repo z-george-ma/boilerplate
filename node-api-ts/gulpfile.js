@@ -3,6 +3,7 @@ var gulp  = require('gulp'),
     tsc   = require('gulp-tsc'),
     babel = require('gulp-babel'),
     spawn = require('child_process').spawn,
+    argv = require('yargs').argv,
     node;
 
 /* clean */
@@ -18,7 +19,7 @@ gulp.task('clean:dist', function (cb) {
 
 gulp.task('clean', ['clean:es6', 'clean:dist'])
 
-gulp.task('compile:typescript', function(cb) {
+gulp.task('compile:typescript', ['clean'], function(cb) {
   gulp.src(['src/**/*.ts'])
       .pipe(tsc({
         emitError: false
@@ -27,7 +28,7 @@ gulp.task('compile:typescript', function(cb) {
       .on('end', function() { cb() })
 })
 
-gulp.task('compile:babel', ['compile:typescript'], function() {
+gulp.task('compile:babel', ['compile:typescript'], function(cb) {
   gulp.src(['es6/**/*.js'])
       .pipe(babel())
       .pipe(gulp.dest('dist/'))
@@ -35,6 +36,15 @@ gulp.task('compile:babel', ['compile:typescript'], function() {
 })
 
 gulp.task('compile', ['compile:typescript', 'compile:babel'])
+
+gulp.task('docker:build', ['compile'], function(cb) {
+  gulp.src(['Dockerfile', 'package.json'])
+      .pipe(gulp.dest('dist/'))
+      .on('end', function() {
+        spawn('docker', ['build', '-t', argv.tag, 'dist'], {stdio: 'inherit'})
+          .on('close', function () { cb() })
+      })
+})
 
 gulp.task('serve', ['compile'], function() {
   if (node) node.kill()

@@ -64,7 +64,8 @@ cat <<EOF > package.json
     "del": ">=2.0.2",
     "gulp": ">=3.9.0",
     "gulp-babel": ">=5.2.1",
-    "gulp-tsc": ">=1.1.1"
+    "gulp-tsc": ">=1.1.1",
+    "yargs": ">=3.27.0"
   },
   "dependencies": {
     "restify": ">=4.0.3"
