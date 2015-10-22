@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "removeComments": true
-  },
-  "files": [
-    "gulpfile.ts"
-  ]
+    "removeComments": true,
+    "sourceMap": true,
+    "jsx": "react"
+  }
 }
