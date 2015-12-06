@@ -3,24 +3,24 @@ Shell scripts to quickly intialize new projects
 
 #### NodeJS boilerplate project with Mocha tests
 ```
-./node.sh -p test-project -o ~/test
+./node.sh -p test-project ~/test
 ```
 A new project will be created at ~/test.
 
 #### NodeJS express API boilerplate project
 ```
-./node-api.sh -p test-project -o ~/test
+./node-api.sh -p test-project ~/test
 ```
 A new project will be created at ~/test
 
 #### NodeJS Express/HTML5 boilerplate project
 ```
-./node-web.sh -p test-project -o ~/test
+./node-web.sh -p test-project ~/test
 ```
 A new project will be created at ~/test
 
 #### NodeJS Express/HTML5/Socket.IO boilerplate project
 ```
-./node-socket.io.sh -p test-project -o ~/test
+./node-socket.io.sh -p test-project ~/test
 ```
 A new project will be created at ~/test
