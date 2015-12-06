@@ -1,11 +1,16 @@
-var gulp     = require('gulp'),
-    del      = require('del'),
-    jasmine  = require('gulp-jasmine'),
-    report   = require('jasmine-spec-reporter'),
-    tsc      = require('gulp-tsc'),
-    babel    = require('gulp-babel'),
-    spawn    = require('child_process').spawn,
+var gulp    = require('gulp'),
+    del     = require('del'),
+    jasmine = require('gulp-jasmine'),
+    report  = require('jasmine-spec-reporter'),
+    tsc     = require('gulp-tsc'),
+    babel   = require('gulp-babel'),
+    spawn   = require('child_process').spawn,
+    argv    = require('yargs').argv,
     node;
+
+var options = {
+  dockerTag: argv.tag || 'api'
+}
 
 /* clean */
 gulp.task('clean:es6', function (cb) {
@@ -38,12 +43,21 @@ gulp.task('build:babel', ['build:typescript'], function(cb) {
       .on('end', function() { cb() })
 })
 
-gulp.task('test', ['build:babel'], function() {
+gulp.task('build', ['build:typescript', 'build:babel'])
+
+gulp.task('test', ['build'], function() {
   gulp.src('dist/test/**/*.js')
       .pipe(jasmine({ reporter: new report() }))
 })
 
-gulp.task('build', ['build:typescript', 'build:babel', 'test'])
+gulp.task('build:docker', ['build'], function(cb) {
+  gulp.src(['Dockerfile', 'package.json'])
+      .pipe(gulp.dest('dist/'))
+      .on('end', function() {
+        spawn('docker', ['build', '-t', options.dockerTag, 'dist'], {stdio: 'inherit'})
+          .on('close', function () { cb() })
+      })
+})
 
 gulp.task('serve', ['build'], function() {
   if (node) node.kill()

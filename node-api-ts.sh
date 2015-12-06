@@ -58,13 +58,14 @@ cat <<EOF > package.json
   "devDependencies": {
     "del": ">=2.0.2",
     "gulp": ">=3.9.0",
-    "gulp-babel": ">=5.2.1",
+    "gulp-babel": "^5.2.1",
     "gulp-jasmine": "^2.1.0",
     "gulp-tsc": ">=1.1.1",
     "jasmine-spec-reporter": ">=2.4.0",
     "yargs": ">=3.27.0"
   },
   "dependencies": {
+    "babel-runtime": "^5.8.34",
     "restify": ">=4.0.3"
   },
   "private": true
