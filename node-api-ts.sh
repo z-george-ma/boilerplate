@@ -66,6 +66,7 @@ cat <<EOF > package.json
   },
   "dependencies": {
     "babel-runtime": "^5.8.34",
+    "hippie": "^0.4.0",
     "restify": ">=4.0.3"
   },
   "private": true

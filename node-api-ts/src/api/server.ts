@@ -1,7 +1,7 @@
 /// <reference path="../typings/tsd"/>
-
 import * as restify from "restify"
-import * as routes from "./route"
+import things from "./things/index"
+
 export let app = restify.createServer()
 
 // Server setup
@@ -13,6 +13,9 @@ app.use((req, res, next) => {
   next()
 })
 
-// Endpoints
-app.get('/healthcheck', routes.healthcheck)
-app.get('/'           , routes.index)
+app.get('/healthcheck', (req: restify.Request, res: restify.Response) => {
+  res.status(200)
+  res.end("Server OK!")
+})
+
+things(app)
