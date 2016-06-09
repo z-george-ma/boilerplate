@@ -1,4 +1,4 @@
-///<reference path='../typings/tsd'/>
+///<reference path='../typings/tsd.d.ts'/>
 
 describe("Tests", () => {
   it("1 + 1 = 2", () => {

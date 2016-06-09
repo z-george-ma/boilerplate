@@ -1,4 +1,4 @@
-///<reference path='../typings/tsd'/>
+///<reference path='../typings/tsd.d.ts'/>
 
 import * as restify from 'restify'
 import things from '../api/things/index'
