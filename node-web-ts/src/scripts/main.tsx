@@ -1,5 +1,4 @@
-/// <reference path="../typings/tsd.d.ts" />
-/// <reference path="../typings/react-bootstrap.d.ts" />
+/// <reference path="../typings/index.d.ts" />
 
 import React          = require("react")
 import ReactBootstrap = require("react-bootstrap")

@@ -1,4 +1,4 @@
-/// <reference path="typings/tsd.d.ts"/>
+/// <reference path="typings/index.d.ts"/>
 
 import {app} from './api/server'
 let port = +process.env.PORT || 80

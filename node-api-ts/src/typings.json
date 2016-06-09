@@ -1,0 +1,10 @@
+{
+  "globalDependencies": {
+    "bunyan": "github:DefinitelyTyped/DefinitelyTyped/bunyan/bunyan.d.ts#3a6e1b8988eba0ba74fe4db20c950242552857e2",
+    "restify": "github:DefinitelyTyped/DefinitelyTyped/restify/restify.d.ts#3a6e1b8988eba0ba74fe4db20c950242552857e2",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#78d36dd49b6b55b9fdfe61776a12bf05c8b07777",
+    "jasmine": "github:DefinitelyTyped/DefinitelyTyped/jasmine/jasmine.d.ts#af5b8275d1f2b92738b93fddabc461fc20c553a1",
+    "supertest": "github:DefinitelyTyped/DefinitelyTyped/supertest/supertest.d.ts#78d36dd49b6b55b9fdfe61776a12bf05c8b07777",
+    "superagent": "github:DefinitelyTyped/DefinitelyTyped/superagent/superagent.d.ts#78d36dd49b6b55b9fdfe61776a12bf05c8b07777"
+  }
+}
