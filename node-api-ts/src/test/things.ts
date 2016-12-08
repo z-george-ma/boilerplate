@@ -15,7 +15,7 @@ describe("Things API", () => {
         .get('/things')
         .expectStatus(200)
         .end((err, res, body) => {
-          done(err)
+          err && done.fail(err)
           app.close()
         })
     })

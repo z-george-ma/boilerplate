@@ -2,22 +2,28 @@
 ...
 
 ## Get started
-Install `gulp`, `typescript` and `typings` globally.
+Install `typescript` and `typings` globally.
 
 ```
-$ npm install -g gulp typescript typings
+$ npm i -g typescript typings
 ```
 
 To install the dependencies, run the following command:
 
 ```
-$ npm install
+$ npm i
 $ cd src
-$ typings install
+$ typings i
 ```
 
 To build the API, run the following command:
 
 ```
-$ gulp build
+$ npm install && npm build
+```
+
+To develop, run the following command:
+
+```
+$ npm run watch
 ```

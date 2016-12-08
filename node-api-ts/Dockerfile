@@ -2,9 +2,10 @@ FROM mhart/alpine-node
 
 WORKDIR /app
 ADD package.json .
-RUN npm install --production
+RUN npm i --production
 
 ADD dist/ .
-EXPOSE 80
+ENV NODE_ENV production
+EXPOSE 8080
 
-CMD NODE_ENV=production node app
+CMD node app

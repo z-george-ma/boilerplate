@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "module": "system",
+    "module": "commonjs",
     "removeComments": true,
     "rootDir": "src",
-    "outDir": "es6"
+    "outDir": "dist"
   }
 }
