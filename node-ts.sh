@@ -55,6 +55,7 @@ cat <<EOF > package.json
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "build": "tsc",
+    "pretest": "npm run build",
     "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "prestart": "npm run build && npm run test",
     "start": "node dist/app"
