@@ -16,6 +16,11 @@ EOF
 # Initialize our own variables:
 project_name=""
 
+if [ "$#" -lt 1 ]; then
+    show_help
+    exit 0
+fi
+
 while getopts "h?p:" opt; do
     case "$opt" in
     h|\?)

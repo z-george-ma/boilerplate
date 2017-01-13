@@ -5,28 +5,29 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 
 function show_help() {
   cat <<EOF
-Usage: $(basename $0) [options] [ -p project_name ] [ -d docker_image_name ] output_directory
+Usage: $(basename $0) [options] [ -p project_name ] output_directory
 
 Options:
   -h        show this help
   -p        set project name
-  -d        set docker image name
 EOF
 }
 
 # Initialize our own variables:
 project_name=""
-docker_image_name=""
 
-while getopts "h?p:d:" opt; do
+if [ "$#" -lt 1 ]; then
+    show_help
+    exit 0
+fi
+
+while getopts "h?p:" opt; do
     case "$opt" in
     h|\?)
         show_help
         exit 0
         ;;
     p)  project_name=$OPTARG
-        ;;
-    d)  docker_image_name=$OPTARG
         ;;
     esac
 done
@@ -52,24 +53,18 @@ cat <<EOF > package.json
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "build": "gulp build",
-    "test": "gulp test",
-    "prestart": "npm run build",
-    "start": "NODE_ENV=production node dist/app"
+    "prebuild": "rm -rf ./dist",
+    "build": "tsc",
+    "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "prestart": "npm run build && npm run test",
+    "start": "node dist/app"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "del": ">=2.0.2",
-    "gulp": ">=3.9.0",
-    "gulp-babel": "^5.2.1",
-    "gulp-jasmine": "^2.1.0",
-    "gulp-tsc": ">=1.1.1",
-    "jasmine-spec-reporter": ">=2.4.0",
-    "yargs": ">=3.27.0"
+    "jasmine": "^2.5.2"
   },
   "dependencies": {
-    "babel-runtime": "^6.0.14"
   },
   "private": true
 }

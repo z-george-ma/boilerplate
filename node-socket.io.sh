@@ -5,20 +5,23 @@ OPTIND=1         # Reset in case getopts has been used previously in the shell.
 
 function show_help() {
   cat <<EOF
-Usage: $(basename $0) [options] [ -p project_name ] [ -o output_directory ]
+Usage: $(basename $0) [options] [ -p project_name ] output_directory
 
 Options:
   -h        show this help
   -p        set project name
-  -o        output directory
 EOF
 }
 
 # Initialize our own variables:
 project_name=""
-output_directory="output"
 
-while getopts "h?p:o:" opt; do
+if [ "$#" -lt 1 ]; then
+    show_help
+    exit 0
+fi
+
+while getopts "h?p:" opt; do
     case "$opt" in
     h|\?)
         show_help
@@ -26,14 +29,14 @@ while getopts "h?p:o:" opt; do
         ;;
     p)  project_name=$OPTARG
         ;;
-    o)  output_directory=$OPTARG
-        ;;
     esac
 done
 
 shift $((OPTIND-1))
 
 [ "$1" = "--" ] && shift
+
+output_directory=$1
 
 if [ -d $output_directory ]; then
   echo "Output directory already exists!" 1>&2
