@@ -20,8 +20,8 @@ To build the API, run the following command:
 $ npm i && npm run build
 ```
 
-To develop, run the following command:
+To start, run the following command:
 
 ```
-$ npm run watch
+$ npm run start
 ```

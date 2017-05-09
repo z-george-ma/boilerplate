@@ -60,7 +60,9 @@ cat <<EOF > package.json
     "watch:start": "nodemon --watch dist --exec \"npm run test && node dist/app\"",
     "watch": "parallelshell \"npm run watch:start\" \"npm run watch:build\"",
     "prestart": "npm run build && npm run test",
-    "start": "node dist/app"
+    "start": "node dist/app",
+    "postinstall": "npm run typings",
+    "typings": "cd src && node ../node_modules/typings/dist/bin.js install"
   },
   "author": "",
   "license": "ISC",
@@ -71,7 +73,8 @@ cat <<EOF > package.json
     "parallelshell": "^2.0.0"
   },
   "dependencies": {
-    "restify": "^4.3.0"
+    "restify": "^4.3.0",
+    "typings": "^2.1.1"
   },
   "private": true
 }

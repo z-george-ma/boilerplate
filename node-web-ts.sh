@@ -70,7 +70,8 @@ cat <<EOF > package.json
   },
   "dependencies": {
     "react": "^0.13.3",
-    "react-bootstrap": "^0.25.2"
+    "react-bootstrap": "^0.25.2",
+    "typings": "^2.1.1"
   },
   "private": true
 }

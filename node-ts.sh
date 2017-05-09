@@ -58,12 +58,15 @@ cat <<EOF > package.json
     "pretest": "npm run build",
     "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
     "prestart": "npm run build && npm run test",
-    "start": "node dist/app"
+    "start": "node dist/app",
+    "postinstall": "npm run typings",
+    "typings": "cd src && node ../node_modules/typings/dist/bin.js install"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jasmine": "^2.5.2"
+    "jasmine": "^2.5.2",
+    "typings": "^2.1.1"
   },
   "dependencies": {
   },
