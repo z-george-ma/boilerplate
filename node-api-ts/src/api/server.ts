@@ -1,4 +1,3 @@
-/// <reference path="../typings/index.d.ts"/>
 import * as restify from "restify"
 import things from "./things/index"
 

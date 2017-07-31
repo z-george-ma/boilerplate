@@ -55,8 +55,10 @@ cat <<EOF > package.json
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "build": "tsc",
-    "pretest": "npm run build",
     "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json",
+    "watch:build": "tsc -w",
+    "watch:start": "nodemon --watch dist --exec \"npm run test && node dist/app\"",
+    "watch": "parallelshell \"npm run watch:start\" \"npm run watch:build\"",
     "prestart": "npm run build && npm run test",
     "start": "node dist/app",
     "postinstall": "npm run typings",
@@ -65,7 +67,9 @@ cat <<EOF > package.json
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "jasmine": "^2.5.2",
+    "jasmine": "^2.7.0",
+    "nodemon": "^1.11.0",
+    "parallelshell": "^3.0.1",
     "typings": "^2.1.1"
   },
   "dependencies": {

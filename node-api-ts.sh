@@ -68,13 +68,13 @@ cat <<EOF > package.json
   "license": "ISC",
   "devDependencies": {
     "hippie": "^0.4.0",
-    "jasmine": "^2.5.2",
+    "jasmine": "^2.7.0",
     "nodemon": "^1.11.0",
-    "parallelshell": "^2.0.0"
+    "parallelshell": "^3.0.1",
+    "typings": "^2.1.1"
   },
   "dependencies": {
-    "restify": "^4.3.0",
-    "typings": "^2.1.1"
+    "restify": "^4.3.0"
   },
   "private": true
 }

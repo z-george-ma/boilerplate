@@ -1,5 +1,3 @@
-/// <reference path="../../typings/index.d.ts"/>
-
 import * as restify from "restify"
 
 export let index =
