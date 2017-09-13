@@ -60,19 +60,18 @@ cat <<EOF > package.json
     "watch:start": "nodemon --watch dist --exec \"npm run test && node dist/app\"",
     "watch": "parallelshell \"npm run watch:start\" \"npm run watch:build\"",
     "prestart": "npm run build && npm run test",
-    "start": "node dist/app",
-    "postinstall": "npm run typings",
-    "typings": "cd src && node ../node_modules/typings/dist/bin.js install"
+    "start": "node dist/app"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "jasmine": "^2.7.0",
     "nodemon": "^1.11.0",
-    "parallelshell": "^3.0.1",
-    "typings": "^2.1.1"
+    "parallelshell": "^3.0.1"
   },
   "dependencies": {
+    "@types/jasmine": "^2.5.54",
+    "@types/node": "^8.0.28"
   },
   "private": true
 }
