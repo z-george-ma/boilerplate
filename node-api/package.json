@@ -1,19 +1,17 @@
 {
   "name": "$project_name",
   "version": "0.0.0",
-  "description": "",
+  "private": true,
   "scripts": {
-    "test": "node ./node_modules/mocha/bin/mocha -R spec",
-    "start": "node ./server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "start": "node ./bin/www",
+    "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json"
   },
   "dependencies": {
-    "express": "*"
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "morgan": "~1.9.0"
   },
-  "private": true
+  "devDependencies": {
+    "jasmine": "^2.7.0"
+  }
 }
