@@ -1,5 +1,8 @@
 # Boilerplates
-Shell scripts to quickly intialize new projects
+Shell scripts to quickly intialize new projects.
+
+#### Prerequisite
+Please ensure you have gettext package installed in your distro.
 
 #### NodeJS boilerplate project with Mocha tests
 ```
