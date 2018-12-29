@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-router.get("/", function(req, res, next) {
+router.get("/", (req, res, next) => {
   res.end();
 });
 
