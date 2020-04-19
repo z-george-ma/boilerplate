@@ -1,9 +1,0 @@
-{
-  "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "removeComments": true,
-    "rootDir": "src",
-    "outDir": "dist"
-  }
-}

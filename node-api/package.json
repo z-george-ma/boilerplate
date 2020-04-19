@@ -1,20 +1,22 @@
 {
   "name": "$project_name",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
   "scripts": {
-    "start": "node ./bin/www",
-    "test": "jasmine JASMINE_CONFIG_PATH=jasmine.json"
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "predev-start": "npm run build",
+    "dev-start": "node dist"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "debug": "~2.6.9",
-    "express": "~4.16.0",
-    "morgan": "~1.9.0"
+    "fastify": "^2.13.1"
   },
   "devDependencies": {
-    "jasmine": "^2.7.0"
-  },
-  "engines": {
-    "node": "8.x"
+    "@types/node": "^13.13.0",
+    "rimraf": "^3.0.2",
+    "typescript": "^3.8.3"
   }
 }
