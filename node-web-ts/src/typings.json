@@ -1,5 +1,0 @@
-{
-  "globalDependencies": {
-    "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#54f064352a3615443f7bff4198078db15e28247b"
-  }
-}

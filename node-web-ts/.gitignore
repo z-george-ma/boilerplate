@@ -1,6 +1,0 @@
-node_modules
-bower_components
-gulpfile.js
-dist
-.DS_Store
-npm-debug.log
